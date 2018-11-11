@@ -4,8 +4,8 @@
 
 ### 小抄
 
-1. [文章](./netty.md)
-2. [文章](http://www.baidu.com)
+1. [netty线程模型](./netty.md)
+2. [编码解码原理(乱码原由)](./endecode.md)
 3. [文章](http://www.baidu.com)
 4. [文章](http://www.baidu.com)
 
