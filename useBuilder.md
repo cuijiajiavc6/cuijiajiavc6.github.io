@@ -68,7 +68,7 @@ public class NutritionFacts {
 创建对象的时候：
 new NuritionFacts.Builder(240,8).calories(100),sodium(35).build();
 
-小技巧，把必填写成final 并且builder构造函数也需要写入这些参数，这样就一定要填啦。选填的就写成可变的，让用户自己set.
+小技巧，把必填写成builder构造函数参数，这样就一定要填啦。选填的就写成可变的，让用户自己set.
 
 优点:
 1. 选填参数可以有一个名字，增加可读性。
