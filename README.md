@@ -1,4 +1,4 @@
-## 为了自由
+## freedom!
 
 [GO HOME](https://github.com/cuijiajiavc6/cuijiajiavc6.github.io/edit/master/README.md) 
 
