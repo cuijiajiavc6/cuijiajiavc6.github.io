@@ -10,7 +10,7 @@
 4. [EffectiveJava-遇到多个构造器参数时要考虑用构建器](./useBuilder.md)
 5. [EffectiveJava-用私有构造器或者枚举类型强化Singleton属性](./singletonUsePrivateConstructor.md)
 6. [EffectiveJava-避免创建不必要的对象](./dontCreateRubbishObject.md)
-7. [jdk-ForkJoinPool 翻译+注释](./dontCreateRubbishObject.md)
+7. [jdk-ForkJoinPool 翻译+注释](./jdk-ForkJoinPool.md)
 
 ### 思考
 1. [ArrayList DEFAULTCAPACITY_EMPTY_ELEMENTDATA 用来干嘛](./defaultcapactiyEmptyElementData.md)
