@@ -23,7 +23,7 @@
     import java.security.ProtectionDomain;
     import java.security.Permissions;
 
-    /**
+    /*
      * 用于运行{@link ForkJoinTask}的{@link ExecutorService}。
      * {@code ForkJoinPool}提供了非{@ code ForkJoinTask}
      * 客户端提交的入口，以及管理和监控操作。
@@ -64,7 +64,7 @@
      * 任务通常应该使用表中列出的within computations的方式，除非使
      * 用通常不需要join的异步event-style任务，在这种情况下，选择两种
      * 方式的区别都不大。
-     * /
+     */
 ```
 
 Summary of task execution methods
