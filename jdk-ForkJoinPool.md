@@ -64,7 +64,7 @@
      * 任务通常应该使用表中列出的within computations的方式，除非使
      * 用通常不需要join的异步event-style任务，在这种情况下，选择两种
      * 方式的区别都不大。
-     * /
+     */
 ```
 
 Summary of task execution methods
@@ -2125,7 +2125,7 @@ Summary of task execution methods
          */
 ```
 动图
-![8e549de1871160c980e63a897e9db274.gif](en-resource://database/934:0)
+![externalSubmit.gif](./img/externalSubmit.gif)
 
 ```java
         private void externalSubmit(ForkJoinTask<?> task) {
