@@ -23,7 +23,7 @@
     import java.security.ProtectionDomain;
     import java.security.Permissions;
 
-    /*
+    /**
      * 用于运行{@link ForkJoinTask}的{@link ExecutorService}。
      * {@code ForkJoinPool}提供了非{@ code ForkJoinTask}
      * 客户端提交的入口，以及管理和监控操作。
@@ -64,7 +64,7 @@
      * 任务通常应该使用表中列出的within computations的方式，除非使
      * 用通常不需要join的异步event-style任务，在这种情况下，选择两种
      * 方式的区别都不大。
-     */
+     * /
 ```
 
 Summary of task execution methods
@@ -557,7 +557,7 @@ Summary of task execution methods
         static final int SS_SEQ       = 1 << 16;       // version count
 
         // Mode bits for ForkJoinPool.config and WorkQueue.config
-        static final int MODE_MASK    = 0xffff << 16;  // top half of int
+        static final int MODE_MASK    = 0xffff << 16;  // int的前16位掩码
         static final int LIFO_QUEUE   = 0;
         static final int FIFO_QUEUE   = 1 << 16;
         static final int SHARED_QUEUE = 1 << 31;       // must be negative
@@ -575,13 +575,12 @@ Summary of task execution methods
         static final class WorkQueue {
 
             /**
-             * Capacity of work-stealing queue array upon initialization.
-             * Must be a power of two; at least 4, but should be larger to
-             * reduce or eliminate cacheline sharing among queues.
-             * Currently, it is much larger, as a partial workaround for
-             * the fact that JVMs often place arrays in locations that
-             * share GC bookkeeping (especially cardmarks) such that
-             * per-write accesses encounter serious memory contention.
+             * 初始化时work-stealing队列数组的容量。 必须是2的n次方; 至少4，
+             * 但应该更大，以减少或消除队列之间的高速缓存行共享。 目前，它要
+             * 大得多，因为JVM经常将数组放在共享GC簿记（特别是卡片）的位置
+             *，能够一部分解决每次写入访问遇到严重的内存竞争的问题。
+             *
+             * 任务队列的初始化容量
              */
             static final int INITIAL_QUEUE_CAPACITY = 1 << 13;
 
@@ -591,29 +590,41 @@ Summary of task execution methods
              * lack of wraparound of index calculations, but defined to a
              * value a bit less than this to help users trap runaway
              * programs before saturating systems.
+             * 
+             * 任务队列的最大容量
              */
             static final int MAXIMUM_QUEUE_CAPACITY = 1 << 26; // 64M
 
             // Instance fields
-            volatile int scanState;    // versioned, <0: inactive; odd:scanning
-            int stackPred;             // pool stack (ctl) predecessor
-            int nsteals;               // number of steals
-            int hint;                  // randomization and stealer index hint
-            int config;                // pool index and mode
+            volatile int scanState;    // 有版本的, <0: 非活跃状态; 其余:scanning
+            int stackPred;             // 线程池堆栈前一个处理器index
+```
+想象一下每个workQueue有保存前一个元素在线程池中workQueues的index：
+![stackPred.png](./img/stackPred.png)
+逻辑上就形成一个链表，然后这个链表是堆栈来的。貌似是用来保存空闲队列的，就是说如果这个节点已经没有工作了，线程池就会把这个没工作的节点连起来，后面有工作的时候可以叫他做。
+
+```java
+            int nsteals;               // 偷了多少工作
+            int hint;                  // 一个随机数，窃取者索引
+            int config;                // 线程池模式
             volatile int qlock;        // 1: locked, < 0: terminate; else 0
-            volatile int base;         // index of next slot for poll
-            int top;                   // index of next slot for push
-            ForkJoinTask<?>[] array;   // the elements (initially unallocated)
+            volatile int base;         //poll 的next index
+            int top;                   // push 的next index
+ ```
+ 
+ ```java
+            
+            ForkJoinTask<?>[] array;   // 任务列表 (initially unallocated)
             final ForkJoinPool pool;   // the containing pool (may be null)
-            final ForkJoinWorkerThread owner; // owning thread or null if shared
-            volatile Thread parker;    // == owner during call to park; else null
+            final ForkJoinWorkerThread owner; // 拥有这个任务队列的线程，共享模式下是null
+            volatile Thread parker;    // 如果被park（阻塞）的话== owner,不然就null
             volatile ForkJoinTask<?> currentJoin;  // task being joined in awaitJoin
             volatile ForkJoinTask<?> currentSteal; // mainly used by helpStealer
 
             WorkQueue(ForkJoinPool pool, ForkJoinWorkerThread owner) {
                 this.pool = pool;
                 this.owner = owner;
-                // Place indices in the center of array (that is not yet allocated)
+                // 把index定位在队列中间(that is not yet allocated)
                 base = top = INITIAL_QUEUE_CAPACITY >>> 1;
             }
 
@@ -2110,7 +2121,13 @@ Summary of task execution methods
          * queue if the one at index if empty or contended.
          *
          * @param task the task. Caller must ensure non-null.
+         * 通过这个提交的任务都是SHARED模式的
          */
+```
+动图
+![8e549de1871160c980e63a897e9db274.gif](en-resource://database/934:0)
+
+```java
         private void externalSubmit(ForkJoinTask<?> task) {
             int r;                                    // initialize caller's probe
             if ((r = ThreadLocalRandom.getProbe()) == 0) {
@@ -2120,11 +2137,14 @@ Summary of task execution methods
             for (;;) {
                 WorkQueue[] ws; WorkQueue q; int rs, m, k;
                 boolean move = false;
+                /*检查线程池是不是要结束了，结束就不能提交任
+                *务啦，然后这个线程跑去帮助线程池结束,帮忙做剩下的事情
+                */
                 if ((rs = runState) < 0) {
                     tryTerminate(false, false);     // help terminate
                     throw new RejectedExecutionException();
                 }
-                else if ((rs & STARTED) == 0 ||     // initialize
+                else if ((rs & STARTED) == 0 ||     // 需要初始化
                          ((ws = workQueues) == null || (m = ws.length - 1) < 0)) {
                     int ns = 0;
                     rs = lockRunState();
@@ -2132,11 +2152,16 @@ Summary of task execution methods
                         if ((rs & STARTED) == 0) {
                             U.compareAndSwapObject(this, STEALCOUNTER, null,
                                                    new AtomicLong());
-                            // create workQueues array with size a power of two
-                            int p = config & SMASK; // ensure at least 2 slots
+                            // 创建尺寸为2的n次方的工作队列
+                            int p = config & SMASK; // 确保至少有2个元素
                             int n = (p > 1) ? p - 1 : 1;
                             n |= n >>> 1; n |= n >>> 2;  n |= n >>> 4;
                             n |= n >>> 8; n |= n >>> 16; n = (n + 1) << 1;
+```
+![filt1.png](./img/filt1.png)
+为什么一开始要 n = p-1 而不是 n = p,可能是如果p刚好是2的n次方的话，最后结果是2 * p, 如果不减就是4 * p 可能不想那么大吧。如果p超过2的n次方，最后结果才会接近4*p
+
+```java
                             workQueues = new WorkQueue[n];
                             ns = STARTED;
                         }
@@ -2144,15 +2169,32 @@ Summary of task execution methods
                         unlockRunState(rs, (rs & ~RSLOCK) | ns);
                     }
                 }
+                //随机数r对应的下标如果有工作队列的话，把这个任务入队就行了
                 else if ((q = ws[k = r & m & SQMASK]) != null) {
+```
+![modeLength.png](./img/modeLength.png)
+
+同理 & SQMASK是类似的，只不过把最后一个奇数位取0，然最终结果变成偶数(SHARED队列)。偶数位上的是共享任务。然后下标不超过2的7次方，也就是128
+
+ ```java
+                   //入队之前，先获得锁
                     if (q.qlock == 0 && U.compareAndSwapInt(q, QLOCK, 0, 1)) {
                         ForkJoinTask<?>[] a = q.array;
                         int s = q.top;
                         boolean submitted = false; // initial submission or resizing
                         try {                      // locked version of push
+                           /*
+                           * 一系列合法性校验，还有非空校验
+                           */
                             if ((a != null && a.length > s + 1 - q.base) ||
                                 (a = q.growArray()) != null) {
                                 int j = (((a.length - 1) & s) << ASHIFT) + ABASE;
+```
+U 是UNSAFE的实例，这个工具可以直接写内存地址的。
+U.putOrderedObject为例，a是对象，然后j是这个对象的偏移量，然后把task直接写到内存地址里面。
+![calculateLocation.png](./img/calculateLocation.png)
+
+```java
                                 U.putOrderedObject(a, j, task);
                                 U.putOrderedInt(q, QTOP, s + 1);
                                 submitted = true;
@@ -2167,12 +2209,23 @@ Summary of task execution methods
                     }
                     move = true;                   // move on failure
                 }
-                else if (((rs = runState) & RSLOCK) == 0) { // create new queue
+                else if (((rs = runState) & RSLOCK) == 0) { 
+                //随机生成的下标没有工作队列，创建一个新的队列
                     q = new WorkQueue(this, null);
+                    //记下来这个队列在线程池工作队列里面的index随机数，后面做些
+                    //运算可以得到这个元素下标
                     q.hint = r;
                     q.config = k | SHARED_QUEUE;
                     q.scanState = INACTIVE;
                     rs = lockRunState();           // publish index
+                    /**一系列很繁杂的参数合法性校验还有非空校验
+                    * 线程池状态在运行
+                    * 线程池工作队列不为空
+                    * k这个随机index不会越界
+                    * 再次确认这个[k]元素是不是不存在，不存在才会创建
+                    * 为什么说再次，因为如果不为空就进入前面那个else
+                    * 不会进到这里来
+                    **/
                     if (rs > 0 &&  (ws = workQueues) != null &&
                         k < ws.length && ws[k] == null)
                         ws[k] = q;                 // else terminated
@@ -2180,7 +2233,7 @@ Summary of task execution methods
                 }
                 else
                     move = true;                   // move if busy
-                if (move)
+                if (move)//如果有冲突，那就需要移动，重新生成一个随机数用来取随机下标
                     r = ThreadLocalRandom.advanceProbe(r);
             }
         }
@@ -2356,6 +2409,10 @@ Summary of task execution methods
          * any security checks or parameter validation.  Invoked directly by
          * makeCommonPool.
          */
+```
+![newForkJoinPool.png](./img/newForkJoinPool.png)
+
+```java
         private ForkJoinPool(int parallelism,
                              ForkJoinWorkerThreadFactory factory,
                              UncaughtExceptionHandler handler,
