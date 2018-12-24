@@ -103,7 +103,7 @@ fork操作会把任务入array队列。join操作是如果当前操作是array�
 
 这里有个疑问，为什么是  return f2.compute() + f1.join(); 而不是先fork 然后return f2.join f1.join呢。fork不会阻塞，join有可能(如果任务给人偷走还没有执行完就要等。)所以先尽快无阻塞地fork出很多任务来，让别的空闲线程可以帮忙处理多一点。一点。
 
-4. 属性
+##### 4. 属性
 下面列出来部分属性，以及后面说明属性的运算与意义。打叉的是我自己没有理解到可以写出来的。
 ![fjparam.png](./img/fjparam.png) 
 
