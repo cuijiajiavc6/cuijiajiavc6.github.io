@@ -12,6 +12,7 @@
 6. [EffectiveJava-避免创建不必要的对象](./dontCreateRubbishObject.md)
 7. [jdk-ForkJoinPool 翻译+注释](./jdk-ForkJoinPool.md)
 8. [jdk-ForkJoinPool 知识点笔记](./jdk-ForkJoinNote.md)
+9. [jdk-Collection 翻译](./jdk-ForkJoinNote.md)
 
 ### 思考
 1. [ArrayList DEFAULTCAPACITY_EMPTY_ELEMENTDATA 用来干嘛](./defaultcapactiyEmptyElementData.md)
