@@ -16,6 +16,7 @@
 10. [jdk-AbstractCollection 翻译](./jdk-AbstractCollection.md)
 11. [jdk-List 翻译](./jdk-List.md)
 12. [jdk-AbstractList 翻译](./jdk-AbstractList.md)
+13. [jdk-ArrayList 翻译](./jdk-ArrayList.md)
 
 
 ### 思考
