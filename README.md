@@ -21,6 +21,7 @@
 15. [jdk-LinkedList 翻译](./jdk-LinkedList.md)
 16. [jdk-Vector 翻译](./jdk-Vector.md)
 17. [jdk-Stack 翻译](./jdk-Stack.md)
+18. [jdk-Map 翻译](./jdk-Map.md)
 
 
 ### 思考
