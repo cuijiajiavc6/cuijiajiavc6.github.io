@@ -14,7 +14,9 @@
 8. [jdk-ForkJoinPool 知识点笔记](./jdk-ForkJoinNote.md)
 9. [jdk-Collection 翻译](./jdk-collection.md)
 10. [jdk-AbstractCollection 翻译](./jdk-AbstractCollection.md)
-11. [jdk-List.md 翻译](./jdk-List.md)
+11. [jdk-List 翻译](./jdk-List.md)
+12. [jdk-AbstractList 翻译](./jdk-AbstractList.md)
+
 
 ### 思考
 1. [ArrayList DEFAULTCAPACITY_EMPTY_ELEMENTDATA 用来干嘛](./defaultcapactiyEmptyElementData.md)
