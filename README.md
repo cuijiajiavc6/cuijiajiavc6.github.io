@@ -18,6 +18,7 @@
 12. [jdk-AbstractList 翻译](./jdk-AbstractList.md)
 13. [jdk-ArrayList 翻译](./jdk-ArrayList.md)
 14. [jdk-AbstractSequentialList 翻译](./jdk-AbstractSequentialList.md)
+15. [jdk-LinkedList 翻译](./jdk-LinkedList.md)
 
 
 ### 思考
