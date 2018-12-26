@@ -31,6 +31,7 @@
 25. [jdk-EnumSet 翻译](./jdk-EnumSet.md)
 26. [jdk-WeakHashMap 翻译](./jdk-WeakHashMap.md)
 27. [jdk-HashMap 翻译](./jdk-HashMap.md)
+28. [jdk-LinkedHashMap 翻译](./jdk-LinkedHashMap.md)
 
 
 ### 思考
