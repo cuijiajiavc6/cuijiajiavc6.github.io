@@ -29,6 +29,7 @@
 23. [jdk-AbstractMap 翻译](./jdk-AbstractMap.md)
 24. [jdk-TreeMap 翻译](./jdk-TreeMap.md)
 25. [jdk-EnumSet 翻译](./jdk-EnumSet.md)
+26. [jdk-WeakHashMap 翻译](./jdk-WeakHashMap.md)
 
 
 ### 思考
