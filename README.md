@@ -25,6 +25,8 @@
 19. [jdk-SortedMap 翻译](./jdk-SortedMap.md)
 20. [jdk-NavigableMap 翻译](./jdk-NavigableMap.md)
 21. [jdk-Hashtable 翻译](./jdk-Hashtable.md)
+22. [jdk-Properties 翻译](./jdk-Properties.md)
+
 
 
 ### 思考
