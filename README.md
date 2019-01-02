@@ -4,6 +4,7 @@
 
 ### 读书
  
+31. [List 知识点笔记](./List.md)
 30. [ArrayList 知识点笔记](./ArrayListNode.md)
 1. [netty线程模型](./netty.md)
 2. [编码解码原理(乱码原由)](./endecode.md)
