@@ -66,59 +66,98 @@ elementData最大的元素个数
 至于为什么数组对象大小不能超过    Integer.MAX_VALUE  * 操作系统位数的字节数，可能是jvm的某个规定，目前我还没有查到这里，以后看到jvm这部分规定可能才会完全确定下来。
 #### 用户动作：
 **基础操作：**
-get 
+
+get
+
 set
+
 add 2
+
 remove 3 ： fastRemove
 
+
 **批量操作：**
+
 addAll 2
+
 removeAll
+
 toArray 2
+
 replaceAll
+
 retainAll 
 
 **增强操作：**
+
 contains
+
 subList 获取子列表
+
 forEach 1.8之后加入了函数参数，把每个元素执行指定的函数
+
 removeIf 
+
 sort
+
 indexOf
+
 lastIndexOf
 
 **管理操作：**
+
 trimToSize 数组容量一般都会比实际元素个数要多，这里把数组缩减到跟元素一样
+
 ensureCapacity 确保容量满足一定值
+
 size
+
 isEmpty  
+
 clone  
+
 clear 把元素清掉   
  
  
 #####  遍历：
+
 iterator
+
 listIterator 相对于普通序列器多了向前操作。
+
 spliterator 这个我还没有看1.8之后新加进来的，貌似是用来并发遍历的
 
 
 #### 内部动作：
+
 elementData 类型转换
+
 removeRange
+
 rangeCheck
+
 rangeCheckForAdd 
+
 batchRemove 
+
 subListRangeCheck 
 
 ##### 扩容：
+
 ensureCapacity ：确保容量达标，做初始化检查
+
 calculateCapacity ：计算最小需要的容量
+
 ensureCapacityInternal ： 确保容量达标
+
 ensureExplicitCapacity ：确保容量达标，不够就扩容
+
 grow ： 扩展容量
+
 扩容是这几个函数相互调用而已，调来调去有点乱, 下面把这几个函数裁剪进一段代码。
 
 **扩容过程：**
+
 下面是整理过的代码（从源码裁剪）：
 ```java
     public boolean add(E e) {
@@ -147,6 +186,7 @@ grow ： 扩展容量
         elementData = Arrays.copyOf(elementData, newCapacity);
     }
 ```
+
 minCapacity是添加元素成功需要的最小容量，除了最后那句copy之外，上面一大堆做的事情是:
 
 1. 计算扩容以后的新容量大约等于newCapacity = 1.5倍旧容量
@@ -154,12 +194,16 @@ minCapacity是添加元素成功需要的最小容量，除了最后那句copy�
 3. 看下newCapacity有没有操作最大容量
 
 ##### 序列化：
+
 writeObject
+
 readObject
 
 
 ##### 异常处理：
+
 outOfBoundsMsg：越界处理
+
 hugeCapacity ：容量太大的处理
 
 
