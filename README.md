@@ -3,8 +3,8 @@
 [GO HOME](https://github.com/cuijiajiavc6/cuijiajiavc6.github.io/edit/master/README.md) 
 
 ### 读书
-
-30.[ArrayList 知识点笔记](./ArrayListNode.md)
+ 
+30. [ArrayList 知识点笔记](./ArrayListNode.md)
 1. [netty线程模型](./netty.md)
 2. [编码解码原理(乱码原由)](./endecode.md)
 3. [EffectiveJava-考虑用静态工厂方法替代构造器](./useStaticMethodFactory.md)
