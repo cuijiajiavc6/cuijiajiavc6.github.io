@@ -4,6 +4,7 @@
 
 ### 读书
 
+30.[ArrayList 知识点笔记]
 1. [netty线程模型](./netty.md)
 2. [编码解码原理(乱码原由)](./endecode.md)
 3. [EffectiveJava-考虑用静态工厂方法替代构造器](./useStaticMethodFactory.md)
@@ -11,7 +12,7 @@
 5. [EffectiveJava-用私有构造器或者枚举类型强化Singleton属性](./singletonUsePrivateConstructor.md)
 6. [EffectiveJava-避免创建不必要的对象](./dontCreateRubbishObject.md)
 7. [jdk-ForkJoinPool 翻译+注释](./jdk-ForkJoinPool.md)
-8. [jdk-ForkJoinPool 知识点笔记](./jdk-ForkJoinNote.md)
+8. [ForkJoinPool 知识点笔记](./ForkJoinNote.md)
 9. [jdk-Collection 翻译](./jdk-collection.md)
 10. [jdk-AbstractCollection 翻译](./jdk-AbstractCollection.md)
 11. [jdk-List 翻译](./jdk-List.md)
