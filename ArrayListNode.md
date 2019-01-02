@@ -1,7 +1,7 @@
 #### 结构：
 ![1](./img/ArrayList1.png)
 
-非同步
+没有做同步
 #### 元数据：
 Object[] **elementData**
 int **size**
