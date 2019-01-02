@@ -1,5 +1,5 @@
 #### 结构：
-![db8832c61dce5178c0b056a0155dfc60.png](en-resource://database/1008:0)
+![1](./img/ArrayList1.png)
 
 非同步
 #### 元数据：
@@ -45,7 +45,7 @@ elementData最大的元素个数
 ```
    
 2. 为什么MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8，要减去8， 一开始我以为是因为存了长度。
-![3716db2d1fd3f57ecd0626b30d9dad3a.png](en-resource://database/1012:0)
+![1](./img/ArrayList2.png)
 
  但想一下好像不对，数组是元素是指针，32位系统指针32位，64位系统指针64位， 那length不就是大于等于8*32位了吗，太大了吧。
  后来查了一些资料,我觉觉得比较合理的解释是,数组也是对象，要存对象头，对象头占32个字节或者64个字节，取决于操作系统位数。8 *  32 （或者4）bit  = 8 * 4（或者8） byte = 32字节(或64字节)。
