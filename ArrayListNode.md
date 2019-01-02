@@ -163,11 +163,11 @@ grow ： 扩展容量
     public boolean add(E e) {
         int minLength = size + 1;
         if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-            minLength = Math.max(DEFAULT_CAPACITY, minCapacity);
+            minLength = Math.max(DEFAULT_CAPACITY, minLength);
         }
         
-        if (minCapacity - elementData.length > 0)
-             grow(minCapacity);
+        if (minLength - elementData.length > 0)
+             grow(minLength);
 
         elementData[size++] = e;
         return true;
