@@ -4,6 +4,7 @@
 没有做同步
 #### 元数据：
 Object[] **elementData**
+
 int **size**
 
 #### 辅助属性： 
