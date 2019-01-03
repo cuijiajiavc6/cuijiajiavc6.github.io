@@ -1,4 +1,4 @@
-## freedom!
+## 找回我自己
 
 [GO HOME](https://github.com/cuijiajiavc6/cuijiajiavc6.github.io/edit/master/README.md) 
 
