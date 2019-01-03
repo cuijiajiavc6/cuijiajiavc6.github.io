@@ -191,7 +191,7 @@ minCapacity是添加元素成功需要的最小容量，除了最后那句copy�
 
 1. 计算扩容以后的新容量大约等于newCapacity = 1.5倍旧容量
 2. 看下newCapacity有没有满足minCapacity
-3. 看下newCapacity有没有操作最大容量
+3. 看下newCapacity有没有超过最大容量
 
 ##### 序列化：
 
