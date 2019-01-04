@@ -4,7 +4,8 @@
 
 ### 读书
 
-32. [并发包 知识点笔记](./concurrentNote.md) 
+34. [AQS 知识点笔记](./AQSNote.md) 
+33. [并发包 知识点笔记](./concurrentNote.md) 
 32. [HashMap 知识点笔记](./hashMapNote.md)
 31. [List 知识点笔记](./List.md)
 30. [ArrayList 知识点笔记](./ArrayListNode.md)
