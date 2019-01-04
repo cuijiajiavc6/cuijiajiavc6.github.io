@@ -45,6 +45,7 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 
 ###### 高度差证明：
 假设一个二叉树有以下这个部分（省略了不相关的部分）。左右的黑色节点数都是3。要想保持第5点，又想要高度差尽量大。在中间插入红色节点就行。
+
 ![hashMap3.png](./img/hashMap3.png)
 ![hashMap4.png](./img/hashMap4.png)
 
