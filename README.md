@@ -3,7 +3,8 @@
 [GO HOME](https://github.com/cuijiajiavc6/cuijiajiavc6.github.io/edit/master/README.md) 
 
 ### 读书
- 
+
+32. [并发包 知识点笔记](./concurrentNote.md) 
 32. [HashMap 知识点笔记](./hashMapNote.md)
 31. [List 知识点笔记](./List.md)
 30. [ArrayList 知识点笔记](./ArrayListNode.md)
