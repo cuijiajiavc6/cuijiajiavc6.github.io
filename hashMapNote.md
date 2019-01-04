@@ -86,7 +86,9 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 如果插入的是另一边呢：
 
 ![hashMap10.png](./img/hashMap10.png)
+
 那就旋转一下：
+
 ![hashMap11.png](./img/hashMap11.png)
 
 把指针指向p，就跟第一种情况一样了。
@@ -215,9 +217,9 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 
 `this.threshold = tableSizeFor(initialCapacity);`
 
-    threshold 是容量乘以loadFactor的结果，为什么这里直接把initialCapacity赋值给他呢。后来想一下，threshold存的才是实际容量。所以它直接赋值就不会对用户指定的容量打折。
+threshold 是容量乘以loadFactor的结果，为什么这里直接把initialCapacity赋值给他呢。后来想一下，threshold存的才是实际容量。所以它直接赋值就不会对用户指定的容量打折。
 
-    tableSizeFor返回一个2的整数次方的数，如果initialCapacity本来就等于2的整数次方了，就返回initialCapacity，不然就返回比它大一点的2的整数次方数。
+tableSizeFor返回一个2的整数次方的数，如果initialCapacity本来就等于2的整数次方了，就返回initialCapacity，不然就返回比它大一点的2的整数次方数。
 
 ```java
 if (++size > threshold)    resize(); 
