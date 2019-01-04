@@ -70,17 +70,27 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 ###### 红黑树调整
 
 **1. 插入**
+
 如果插入的时候刚好父节点是红色，就要调整，因为不能两个相邻红色。
+
 ![hashMap7.png](./img/hashMap7.png)
+
 怎么办呢，如果父节点是红色，可以推导出父节点旁边肯定是黑色：
+
 ![hashMap8.png](./img/hashMap8.png)
+
 把父节点跟上面那个黑色换一下颜色，没有破坏平衡，就是不知道新的那个红节点会不会也是产生冲突，那就把指针上移，一直到上面没冲突，或者根节点，如果当前节点是根节点，直接变黑色，等于左右加了1，不会破坏平衡：
+
 ![hashMap9.png](./img/hashMap9.png)
+
 如果插入的是另一边呢：
+
 ![hashMap10.png](./img/hashMap10.png)
 那就旋转一下：
 ![hashMap11.png](./img/hashMap11.png)
+
 把指针指向p，就跟第一种情况一样了。
+
 ![hashMap12.png](./img/hashMap12.png)
 
 **2.删除**
@@ -96,10 +106,12 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 
 * 删除的是红色节点，不会打破平衡，直接删
 * 删除的是黑色，打破平衡，就要放大来看删除后的树了，假设删除后是这样的（跟上面情况不太一样，不过可以互相转换的，所以后面列出各种可能）：
+
 ![hashMap16.png](./img/hashMap16.png)
 
 情况：
 如果替补节点是根节点就平衡啦，所以不考虑替补节点是根节点，除了对称情况之外可以划分一下几种情况：
+
 ![hashMap17.png](./img/hashMap17.png)
 
 
@@ -107,46 +119,76 @@ DEFAULT_LOAD_FACTOR = 0.75f ： loadFactor默认值
 各种情况都是可以相互转换的
 
 **情况1**. 如果替补节点是红色
+
 ![hashMap18.png](./img/hashMap18.png)
+
 直接红色变成黑色可以了
+
 ![hashMap19.png](./img/hashMap19.png)
 
 
 **情况2**. 如果替补节点是黑色，父亲另外一个子节点是红色  
+
 ![hashMap20.png](./img/hashMap20.png)
+
 可以推出
+
 ![hashMap21.png](./img/hashMap21.png)
+
 换颜色
+
 ![hashMap22.png](./img/hashMap22.png)
+
 旋转
+
 ![hashMap23.png](./img/hashMap23.png)
+
 ![hashMap24.png](./img/hashMap24.png)
+
 跟**情况1**一样
 
 **情况3.**
+
 ![hashMap25.png](./img/hashMap25.png)
+
 颜色换一下
+
 ![hashMap26.png](./img/hashMap26.png)
+
 变成**情况2**
 
 **情况4**
+
 ![hashMap27.png](./img/hashMap27.png)
 
 父节点跟另外一边子节点换颜色
+
 ![hashMap28.png](./img/hashMap28.png)
+
 旋转
+
 ![hashMap29.png](./img/hashMap29.png)
+
 ![hashMap30.png](./img/hashMap30.png)
+
 变色
+
 ![hashMap31.png](./img/hashMap31.png)
 
 **情况5**
+
 ![hashMap32.png](./img/hashMap32.png)
+
 换色
+
 ![hashMap33.png](./img/hashMap33.png)
+
 旋转
+
 ![hashMap34.png](./img/hashMap34.png)
+
 ![hashMap35.png](./img/hashMap35.png)
+
 变成**情况2**
 
 **所以实质上是只有情况1，情况2**
