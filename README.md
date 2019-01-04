@@ -1,9 +1,10 @@
-## 找回我自己
+## 找回自己
 
 [GO HOME](https://github.com/cuijiajiavc6/cuijiajiavc6.github.io/edit/master/README.md) 
 
 ### 读书
  
+32. [HashMap 知识点笔记](./hashMapNote.md)
 31. [List 知识点笔记](./List.md)
 30. [ArrayList 知识点笔记](./ArrayListNode.md)
 1. [netty线程模型](./netty.md)
